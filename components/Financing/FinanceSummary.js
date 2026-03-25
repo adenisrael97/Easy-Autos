@@ -2,12 +2,12 @@ import { CurrencyDollarIcon, ShieldCheckIcon, ClockIcon, UserGroupIcon } from "@
 
 export default function FinanceSummary() {
     return (
-        <section className="w-full max-w-6xl mx-auto px-4 py-12">
+        <section className="w-full max-w-6xl mx-auto px-2 sm:px-4 py-8 sm:py-12">
             <h2 className="text-3xl font-extrabold text-center mb-6 text-black">Why Finance with AgapeAutos?</h2>
             <p className="text-center text-gray-700 max-w-2xl mx-auto mb-12 text-lg font-light">
                 Experience a seamless, transparent, and customer-focused financing journey. We make it easy to drive away in your dream car with confidence and peace of mind.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
                 {/* Card 1 */}
                 <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center border-t-4 border-yellow-500">
                     <CurrencyDollarIcon className="w-10 h-10 text-yellow-500 mb-3" />

@@ -2,7 +2,7 @@ import Hero from "@/components/LandingPage/Hero";
 import CTA from "@/components/LandingPage/CTA";
 import Services from "@/components/LandingPage/Services";
 import AboutUs from "@/components/LandingPage/AboutUs";
-import Testimonials from "@/components/LandingPage/Testimonials";
+import TestimonialsClient from "@/components/LandingPage/TestimonialsClient";
 
 
 
@@ -13,7 +13,7 @@ export default function HomePage() {
       <CTA />
       <Services />
       <AboutUs />
-      <Testimonials />
+      <TestimonialsClient />
     </section>
    
   )

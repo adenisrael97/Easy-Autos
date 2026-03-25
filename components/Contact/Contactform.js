@@ -23,13 +23,13 @@ export default function ContactForm() {
     }
 
     return (
-        <section className="max-w-xl mx-auto mt-12 rounded-2xl shadow-2xl p-8 border border-gray-200 bg-linear-to-br from-gray-700 via-gray-800 to-black">
+        <section className="max-w-xl mx-auto mt-8 sm:mt-12 rounded-2xl shadow-2xl p-4 sm:p-8 border border-gray-200 bg-linear-to-br from-gray-700 via-gray-800 to-black">
             <h2 className="text-2xl font-bold text-black mb-6 flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7 text-yellow-500"><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75v10.5A2.25 2.25 0 004.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75M2.25 6.75A2.25 2.25 0 014.5 4.5h15a2.25 2.25 0 012.25 2.25M2.25 6.75l9.72 7.29a2.25 2.25 0 002.58 0l9.72-7.29" /></svg>
                 Send Us a Message
             </h2>
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                <div className="flex gap-4 mt-4">
+                <div className="flex flex-col sm:flex-row gap-4 mt-4">
                     <div className="flex-1">
                         <label className="text-yellow-600 font-semibold mb-1 flex items-center gap-1" htmlFor="name">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-yellow-500"><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 19.5a7.5 7.5 0 0115 0v.75a.75.75 0 01-.75.75h-13.5a.75.75 0 01-.75-.75V19.5z" /></svg>
@@ -45,7 +45,7 @@ export default function ContactForm() {
                         <input type="email" name="email" id="email" required value={form.email} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-50 text-black" placeholder="you@email.com" />
                     </div>
                 </div>
-                <div className="flex gap-4 mt-4">
+                <div className="flex flex-col sm:flex-row gap-4 mt-4">
                     <div className="flex-1">
                         <label className="text-yellow-600 font-semibold mb-1 flex items-center gap-1" htmlFor="phone">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-yellow-500"><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75v10.5A2.25 2.25 0 004.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75M2.25 6.75A2.25 2.25 0 014.5 4.5h15a2.25 2.25 0 012.25 2.25M2.25 6.75l9.72 7.29a2.25 2.25 0 002.58 0l9.72-7.29" /></svg>

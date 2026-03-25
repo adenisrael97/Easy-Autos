@@ -157,7 +157,7 @@ export default function HeroInventory() {
                   borderTopLeftRadius: "1rem",
                   borderTopRightRadius: "1rem",
                 }}
-                priority
+                priority={paginatedCars.indexOf(car) < 4}
               />
               <div className="p-4 flex flex-col flex-1">
                 <h3 className="text-lg font-bold text-yellow-400 mb-1">
@@ -173,7 +173,7 @@ export default function HeroInventory() {
                   ₦{car.price.toLocaleString()}
                 </div>
                 <Link
-                  href={`/inventory/${car.slug}`}
+                  href={`/Inventory/${car.slug}`}
                   className="mt-auto inline-block px-4 py-2 rounded-full bg-linear-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-black font-semibold shadow hover:scale-105 transition-transform duration-200 text-center"
                 >
                   View Details

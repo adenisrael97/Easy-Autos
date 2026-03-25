@@ -35,17 +35,17 @@ export default function Services() {
   ];
 
   return (
-    <section className="w-full flex flex-col items-center justify-center py-12 px-4 bg-black">
+    <section className="w-full flex flex-col items-center justify-center py-8 sm:py-12 px-2 sm:px-4 bg-black">
       {/* WHAT WE OFFER. */}
-      <h2 className="text-xl md:text-2xl font-thin text-yellow-400 mb-2 uppercase tracking-widest">WHAT WE OFFER.</h2>
+      <h2 className="text-lg sm:text-xl md:text-2xl font-thin text-yellow-400 mb-2 uppercase tracking-widest">WHAT WE OFFER.</h2>
       {/* Our Services */}
-      <h3 className="text-2xl md:text-3xl font-thin text-white mb-4">Our Services</h3>
+      <h3 className="text-xl sm:text-2xl md:text-3xl font-thin text-white mb-4">Our Services</h3>
       {/* Small content */}
-      <p className="text-gray-300 text-base md:text-lg mb-8 max-w-2xl text-center font-thin">
+      <p className="text-gray-300 text-sm sm:text-base md:text-lg mb-8 max-w-2xl text-center font-thin">
         At Agape Autos, we are committed to delivering a seamless automotive experience. From helping you find your dream car to providing ongoing support and protection, our services are designed to exceed your expectations every step of the way.
       </p>
       {/* Services Cards */}
-      <div className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
         {services.map((service, idx) => (
           <div key={idx} className="flex flex-col items-center bg-gray-900 rounded-2xl shadow-xl border border-gray-700 p-6 hover:shadow-2xl transition-shadow duration-300">
             <div className="mb-4">{service.icon}</div>

@@ -3,8 +3,8 @@ import Link from 'next/link';
 
 export default function Footer () {
     return (
-                <footer className="w-full bg-linear-to-t from-gray-900 via-gray-800 to-gray-700 text-gray-300 pt-12 pb-6 px-4 mt-16">
-                    <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:justify-between gap-10 border-b border-gray-600 pb-10">
+                <footer className="w-full bg-linear-to-t from-gray-900 via-gray-800 to-gray-700 text-gray-300 pt-8 sm:pt-12 pb-6 px-2 sm:px-4 mt-16">
+                    <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:justify-between gap-8 md:gap-10 border-b border-gray-600 pb-8 md:pb-10">
                         {/* Brand & Social */}
                         <div className="flex-1 min-w-55 flex flex-col gap-4">
                             <div className="flex items-center gap-2 mb-2">
@@ -29,17 +29,17 @@ export default function Footer () {
                                         Car Sales
                                     </Link>
                                 </li>
-                                <li><a href="/service" className="hover:text-yellow-400 transition">Maintenance & Repairs</a></li>
-                                <li><a href="/financing" className="hover:text-yellow-400 transition">Financing</a></li>
-                                <li><a href="/sell-trade" className="hover:text-yellow-400 transition">Sell/Trade-In</a></li>
-                                <li><a href="/car-details" className="hover:text-yellow-400 transition">Vehicle Detailing</a></li>
+                                <li><Link href="/service" className="hover:text-yellow-400 transition">Maintenance & Repairs</Link></li>
+                                <li><Link href="/financing" className="hover:text-yellow-400 transition">Financing</Link></li>
+                                <li><Link href="/sell-trade" className="hover:text-yellow-400 transition">Sell/Trade-In</Link></li>
+                                <li><Link href="/service" className="hover:text-yellow-400 transition">Vehicle Detailing</Link></li>
                             </ul>
                         </div>
                         {/* Support */}
                         <div className="flex-1 min-w-45">
                             <h4 className="text-lg font-semibold text-white mb-3">Support</h4>
                             <ul className="space-y-2 text-sm">
-                                <li><a href="/contact" className="hover:text-yellow-400 transition">Contact Us</a></li>
+                                <li><Link href="/contact" className="hover:text-yellow-400 transition">Contact Us</Link></li>
                                 <li><a href="#" className="hover:text-yellow-400 transition">FAQs</a></li>
                                 <li><a href="#" className="hover:text-yellow-400 transition">Warranty</a></li>
                                 <li><a href="#" className="hover:text-yellow-400 transition">Customer Support</a></li>
@@ -50,7 +50,7 @@ export default function Footer () {
                         <div className="flex-1 min-w-45">
                             <h4 className="text-lg font-semibold text-white mb-3">Company</h4>
                             <ul className="space-y-2 text-sm">
-                                <li><a href="/about" className="hover:text-yellow-400 transition">About Us</a></li>
+                                <li><Link href="/about" className="hover:text-yellow-400 transition">About Us</Link></li>
                                 <li><a href="#" className="hover:text-yellow-400 transition">Our Team</a></li>
                                 <li><a href="#" className="hover:text-yellow-400 transition">Careers</a></li>
                                 <li><a href="#" className="hover:text-yellow-400 transition">Testimonials</a></li>

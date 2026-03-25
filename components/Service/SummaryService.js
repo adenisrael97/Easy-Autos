@@ -3,8 +3,8 @@ import Link from "next/link";
 export default function SummaryService() {
     return (
         <div className="bg-linear-to-r from-gray-900 via-black to-gray-800 rounded-3xl shadow-lg px-6 py-12 max-w-4xl mx-auto my-12 text-center">
-            <h2 className="text-3xl font-extrabold mb-4 text-black">Service Summary</h2>
-            <p className="text-gray-700 text-lg mb-8 font-light max-w-2xl mx-auto">
+            <h2 className="text-3xl font-extrabold mb-4 text-white">Service Summary</h2>
+            <p className="text-gray-300 text-lg mb-8 font-light max-w-2xl mx-auto">
                 At Agape Autos, we are committed to providing a full spectrum of automotive services, from expert repairs and inspections to premium detailing and customer support. Our experienced team ensures your vehicle receives the best care, so you can drive with confidence and peace of mind.
             </p>
                         <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6">

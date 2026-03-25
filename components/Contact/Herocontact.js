@@ -22,7 +22,7 @@ export default function Herocontact() {
 
   return (
     <div>
-      <div className="relative h-[60vh] w-full overflow-hidden">
+      <div className="relative h-[50vh] sm:h-[60vh] w-full overflow-hidden">
         {images.map((img, index) => (
           <div
             key={index}
@@ -44,18 +44,18 @@ export default function Herocontact() {
         <div className="absolute inset-0 bg-black/60" />
 
         {/* Hero Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-6">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-3 sm:px-6">
+          <h1 className="text-2xl sm:text-4xl md:text-6xl font-bold mb-3 sm:mb-4">
             Contact Us
           </h1>
-          <p className="max-w-xl text-lg opacity-90">
+          <p className="max-w-xs sm:max-w-xl text-base sm:text-lg opacity-90">
             We’re here to help you find, finance, and trade your perfect car.
           </p>
         </div>
       </div>
 
       {/* Contact Details Section */}
-      <div className="relative z-20 max-w-xl mx-auto mt-10 bg-white/90 rounded-2xl shadow-2xl p-8 flex flex-col gap-4 border border-gray-200">
+      <div className="relative z-20 max-w-xs sm:max-w-md md:max-w-xl mx-auto mt-8 sm:mt-10 bg-white/90 rounded-2xl shadow-2xl p-4 sm:p-6 md:p-8 flex flex-col gap-4 border border-gray-200">
         <h2 className="text-2xl font-bold text-gray-900 mb-2 flex items-center gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7 text-gold-500"><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75v10.5A2.25 2.25 0 004.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75M2.25 6.75A2.25 2.25 0 014.5 4.5h15a2.25 2.25 0 012.25 2.25M2.25 6.75l9.72 7.29a2.25 2.25 0 002.58 0l9.72-7.29" /></svg>
           Contact Information
@@ -87,3 +87,7 @@ export default function Herocontact() {
     </div>
   );
 }
+
+
+
+

@@ -47,7 +47,7 @@ export default function Hero() {
 	}, []);
 
 	return (
-		<section className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden">
+		<section className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden px-2 sm:px-4 md:px-8">
 			{/* Sliding background images */}
 			{images.map((img, idx) => (
 				<Image
@@ -63,9 +63,9 @@ export default function Hero() {
 					style={{ transitionProperty: 'opacity' }}
 				/>
 			))}
-			<div className="relative z-10 flex flex-col items-center justify-center w-full h-full pt-32 pb-24">
+			   <div className="relative z-10 flex flex-col items-center justify-center w-full h-full pt-24 sm:pt-32 pb-16 sm:pb-24">
 				{/* Sliding luxury content with glassmorphism and elegant typography */}
-				<div className="w-full max-w-2xl min-h-45 flex flex-col items-center justify-center">
+				   <div className="w-full max-w-2xl min-h-45 flex flex-col items-center justify-center px-2 sm:px-0">
 					{luxurySlides.map((item, idx) => (
 						<div
 							key={idx}
@@ -76,10 +76,10 @@ export default function Hero() {
 							}`}
 						>
 							<div className="rounded-2xl shadow-2xl px-6 mb-30 py-8 md:px-8 md:py-10 flex flex-col items-center gap-3 animate-fade-in">
-								<h1 className="text-2xl md:text-4xl font-extrabold tracking-tight mb-1 font-serif bg-linear-to-r from-yellow-700 via-yellow-600 to-red-800 bg-clip-text text-transparent drop-shadow-lg">
+								   <h1 className="text-xl sm:text-2xl md:text-4xl font-extrabold tracking-tight mb-1 font-serif bg-linear-to-r from-yellow-700 via-yellow-600 to-red-800 bg-clip-text text-transparent drop-shadow-lg text-center">
 									{item.title}
 								</h1>
-								<p className="text-sm md:text-lg font-medium tracking-wide mb-1 max-w-xl text-white drop-shadow-lg">
+								   <p className="text-xs sm:text-sm md:text-lg font-medium tracking-wide mb-1 max-w-xs sm:max-w-xl text-white drop-shadow-lg text-center">
 									{item.desc}
 								</p>
 								<div className="w-14 h-1 bg-linear-to-r from-gold-400 via-gray-400 to-red-500 rounded-full mt-2 mb-1" />
@@ -88,19 +88,19 @@ export default function Hero() {
 					))}
 				</div>
 				{/* Buttons with modern style */}
-				<div className="mt-25 flex flex-col sm:flex-row gap-4 justify-center items-center relative">
-					<Link
-						href="/Inventory"
-						className="px-6 py-2 rounded-full bg-linear-to-r from-yellow-400 via-yellow-500 to-red-500 text-black font-semibold text-base shadow-md hover:scale-105 hover:from-yellow-500 hover:to-red-600 focus:outline-none focus:ring-2 focus:ring-gold-400 transition-all duration-300 border border-gold-400"
-					>
-						View Inventory
-					</Link>
-					<Link
-						href="/contact"
-						className="px-6 py-2 rounded-full bg-linear-to-r from-gray-200 via-white to-gray-400 text-black font-semibold text-base shadow-md hover:scale-105 hover:from-gray-300 hover:to-red-500 transition-all duration-300 border border-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400"
-					>
-						Contact Us
-					</Link>
+				   <div className="mt-10 sm:mt-16 flex flex-col sm:flex-row gap-4 justify-center items-center relative w-full px-2 sm:px-0">
+					   <Link
+						   href="/Inventory"
+						   className="px-4 sm:px-6 py-2 rounded-full bg-linear-to-r from-yellow-400 via-yellow-500 to-red-500 text-black font-semibold text-sm sm:text-base shadow-md hover:scale-105 hover:from-yellow-500 hover:to-red-600 focus:outline-none focus:ring-2 focus:ring-gold-400 transition-all duration-300 border border-gold-400 w-full sm:w-auto text-center"
+					   >
+						   View Inventory
+					   </Link>
+					   <Link
+						   href="/contact"
+						   className="px-4 sm:px-6 py-2 rounded-full bg-linear-to-r from-gray-200 via-white to-gray-400 text-black font-semibold text-sm sm:text-base shadow-md hover:scale-105 hover:from-gray-300 hover:to-red-500 transition-all duration-300 border border-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 w-full sm:w-auto text-center"
+					   >
+						   Contact Us
+					   </Link>
 				</div>
 			</div>
 		</section>

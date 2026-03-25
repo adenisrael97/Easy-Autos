@@ -122,7 +122,7 @@ export default function Navbar() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className={`relative px-3 py-1.5 text-xs font-normal rounded-lg transition-colors ${
+                    className={`relative px-3 py-1.5 text-sm md:text-base font-normal rounded-lg transition-colors ${
                       isActive(link.href)
                         ? "text-yellow-500 bg-gray-900"
                         : "text-white hover:text-yellow-500 hover:bg-gray-800"
@@ -145,7 +145,7 @@ export default function Navbar() {
             <div className="hidden lg:flex items-center gap-4">
               <Link
                 href="/contact"
-                className="px-3 py-1 bg-linear-to-r from-yellow-400 to-yellow-600 text-black text-xs font-normal rounded-full border border-yellow-500 hover:from-yellow-500 hover:to-yellow-700 active:bg-yellow-700 transition-all shadow-md hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="px-3 py-1 bg-linear-to-r from-yellow-400 to-yellow-600 text-black text-sm md:text-base font-normal rounded-full border border-yellow-500 hover:from-yellow-500 hover:to-yellow-700 active:bg-yellow-700 transition-all shadow-md hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-500"
                 style={{ minWidth: '60px', letterSpacing: '0.02em' }}
               >
                 Get Quote
@@ -190,7 +190,7 @@ export default function Navbar() {
                       <Link
                         href={link.href}
                         onClick={closeMenu}
-                        className={`block px-3 py-2 rounded-lg text-xs font-normal transition-colors ${
+                        className={`block px-3 py-2 rounded-lg text-sm md:text-base font-normal transition-colors ${
                           isActive(link.href)
                             ? "bg-yellow-500/20 text-yellow-600"
                             : "text-white hover:text-yellow-500 hover:bg-gray-900"
@@ -207,7 +207,7 @@ export default function Navbar() {
                   <Link
                     href="/contact"
                     onClick={closeMenu}
-                    className="block w-full py-1 bg-linear-to-r from-yellow-400 to-yellow-600 text-black text-xs text-center font-normal rounded-full border border-yellow-500 hover:from-yellow-500 hover:to-yellow-700 active:bg-yellow-700 transition-all shadow-md hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                    className="block w-full py-1 bg-linear-to-r from-yellow-400 to-yellow-600 text-black text-sm md:text-base text-center font-normal rounded-full border border-yellow-500 hover:from-yellow-500 hover:to-yellow-700 active:bg-yellow-700 transition-all shadow-md hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-500"
                     style={{ minWidth: '60px', letterSpacing: '0.02em' }}
                   >
                     Get Quote

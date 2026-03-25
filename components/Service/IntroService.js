@@ -1,11 +1,12 @@
 import { WrenchScrewdriverIcon, ShieldCheckIcon, CurrencyDollarIcon, TruckIcon, SparklesIcon, UserGroupIcon, ClockIcon } from "@heroicons/react/24/solid";
+import Link from "next/link";
 
 export default function IntroService() {
     return (
         <>
             <section className="w-full max-w-6xl mx-auto px-4 py-12">
-                <h2 className="text-3xl font-extrabold text-center mb-6 text-black">Our Services</h2>
-                <p className="text-center text-gray-700 max-w-2xl mx-auto mb-12 text-lg font-light">
+                <h2 className="text-3xl font-extrabold text-center mb-6 text-white">Our Services</h2>
+                <p className="text-center text-gray-300 max-w-2xl mx-auto mb-12 text-lg font-light">
                     At Agape Autos, we offer a comprehensive suite of automotive services designed to keep you on the road with confidence. From expert repairs to premium detailing, our team is dedicated to your satisfaction.
                 </p>
                 
@@ -49,19 +50,19 @@ export default function IntroService() {
                     
                 </div>
                 <div className="w-full flex justify-center mt-15">
-                          <a href="/financing" className="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-6 py-3 rounded-full shadow-lg transition-colors duration-200 mx-auto">
+                          <Link href="/financing" className="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-6 py-3 rounded-full shadow-lg transition-colors duration-200 mx-auto">
                             Financing
                             {/* Forward arrow icon */}
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                             </svg>
-                        </a>
+                        </Link>
                     </div>
             </section>
             {/* Why Choose Us Section */}
             <section className="w-full max-w-6xl mx-auto px-4 py-12">
-                <h2 className="text-3xl font-extrabold text-center mb-6 text-black">Why Choose Us?</h2>
-                <p className="text-center text-gray-700 max-w-2xl mx-auto mb-12 text-lg font-light">
+                <h2 className="text-3xl font-extrabold text-center mb-6 text-white">Why Choose Us?</h2>
+                <p className="text-center text-gray-300 max-w-2xl mx-auto mb-12 text-lg font-light">
                     Discover the Agape Autos difference—where integrity, expertise, and customer care come together to deliver an exceptional automotive experience. We go the extra mile for your satisfaction and peace of mind.
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

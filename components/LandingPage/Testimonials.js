@@ -42,17 +42,17 @@ export default function Testimonials() {
 	}, []);
 
 	return (
-		<section className="w-full flex flex-col items-center justify-center py-12 px-4 bg-black">
+		<section className="w-full flex flex-col items-center justify-center py-8 sm:py-12 px-2 sm:px-4 bg-black">
 			{/* Heading */}
-			<h2 className="text-xl md:text-2xl font-thin text-yellow-400 mb-2 uppercase tracking-widest">Testimonial</h2>
+			<h2 className="text-lg sm:text-xl md:text-2xl font-thin text-yellow-400 mb-2 uppercase tracking-widest">Testimonial</h2>
 			{/* Subheading */}
-			<h3 className="text-2xl md:text-3xl font-thin text-white mb-4">What Our Clients Say</h3>
+			<h3 className="text-xl sm:text-2xl md:text-3xl font-thin text-white mb-4">What Our Clients Say</h3>
 			{/* Small content */}
-			<p className="text-gray-300 text-base md:text-lg mb-8 max-w-2xl text-center font-thin">
+			<p className="text-gray-300 text-sm sm:text-base md:text-lg mb-8 max-w-2xl text-center font-thin">
 				We are proud to have earned the trust of our clients. Here’s what some of them have to say about their experience with Agape Autos.
 			</p>
 			{/* Sliding Testimonial Cards */}
-			<div className="relative w-full max-w-2xl h-64 flex items-center justify-center">
+			<div className="relative w-full max-w-2xl h-64 flex items-center justify-center px-2 sm:px-0">
 				{testimonials.map((t, idx) => (
 					<div
 						key={idx}
@@ -83,11 +83,11 @@ export default function Testimonials() {
 					<p className="text-gray-300 text-base md:text-lg mb-6 font-thin">
 						Contact us today and let our team help you drive home the perfect vehicle. Fill out the form below and we’ll get back to you as soon as possible.
 					</p>
-					<form className="flex flex-col gap-4">
-						<input type="text" placeholder="Name" className="px-4 py-2 rounded bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
-						<input type="email" placeholder="Email" className="px-4 py-2 rounded bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+					<form className="flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
+						<input type="text" placeholder="Name" required className="px-4 py-2 rounded bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+						<input type="email" placeholder="Email" required className="px-4 py-2 rounded bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
 						<input type="tel" placeholder="Phone Number" className="px-4 py-2 rounded bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
-						<textarea placeholder="Your Message" rows={4} className="px-4 py-2 rounded bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+						<textarea placeholder="Your Message" required rows={4} className="px-4 py-2 rounded bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
 						<div className="flex justify-center w-full">
 							<button type="submit" className="mt-2 px-6 py-2 rounded-full bg-linear-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-black font-semibold shadow-md hover:scale-105 hover:from-yellow-500 hover:to-yellow-500 transition-all duration-300 border border-yellow-400 text-sm">
 								Send Message

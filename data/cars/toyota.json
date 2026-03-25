@@ -18,7 +18,7 @@
       "Backup Camera",
       "Alloy Wheels"
     ],
-    "image": "/images/toyota/toyota1.avif",
+    "image": "/images/Toyota/Toyota1.avif",
     "available": true,
     "slug": "toyota-toyotalandcruiser-landcruiser"
   },
@@ -39,7 +39,7 @@
       "Backup Camera",
       "Cruise Control"
     ],
-    "image": "/images/toyota/toyota2.avif",
+    "image": "/images/Toyota/Toyota2.avif",
     "available": true,
     "slug": "toyota-toyotahighlander-highlander"
   },
@@ -60,7 +60,7 @@
       "Backup Camera",
       "Cruise Control"
     ],
-    "image": "/images/toyota/toyota11.avif",
+    "image": "/images/Toyota/Toyota11.avif",
     "available": true,
     "slug": "toyota-toyotacamry-camry"
   },
@@ -81,7 +81,7 @@
       "Backup Camera",
       "Cruise Control"
     ],
-    "image": "/images/toyota/toyota12.avif",
+    "image": "/images/Toyota/Toyota12.avif",
     "available": true,
     "slug": "toyota-toyotacorolla-corolla"
   },
@@ -102,7 +102,7 @@
       "Backup Camera",
       "Alloy Wheels"
     ],
-    "image": "/images/toyota/toyota13.avif",
+    "image": "/images/Toyota/Toyota13.avif",
     "available": true,
     "slug": "toyota-toyotahilux-hilux"
   },
@@ -124,7 +124,7 @@
       "Cruise Control",
       "Keyless Entry"
     ],
-    "image": "/images/toyota/toyota14.avif",
+    "image": "/images/Toyota/Toyota14.avif",
     "available": true,
     "slug": "toyota-toyotarav4-rav4"
   },
@@ -144,7 +144,7 @@
       "Bluetooth",
       "Backup Camera"
     ],
-    "image": "/images/toyota/toyota15.avif",
+    "image": "/images/Toyota/Toyota15.avif",
     "available": true,
     "slug": "toyota-toyotayaris-yaris"
   },
@@ -165,7 +165,7 @@
       "Backup Camera",
       "Alloy Wheels"
     ],
-    "image": "/images/toyota/toyota2.avif",
+    "image": "/images/Toyota/Toyota2.avif",
     "available": true,
     "slug": "toyota-toyotatacoma-tacoma"
   },
@@ -186,7 +186,7 @@
       "Backup Camera",
       "Cruise Control"
     ],
-    "image": "/images/toyota/toyota3.avif",
+    "image": "/images/Toyota/Toyota3.avif",
     "available": true,
     "slug": "toyota-toyotaavalon-avalon"
   },
@@ -206,7 +206,7 @@
       "Bluetooth",
       "Backup Camera"
     ],
-    "image": "/images/toyota/toyota4.avif",
+    "image": "/images/Toyota/Toyota4.avif",
     "available": true,
     "slug": "toyota-toyotaprius-prius"
   },
@@ -228,7 +228,7 @@
       "Cruise Control",
       "Keyless Entry"
     ],
-    "image": "/images/toyota/toyota5.avif",
+    "image": "/images/Toyota/Toyota5.avif",
     "available": true,
     "slug": "toyota-toyotasienna-sienna"
   },
@@ -249,7 +249,7 @@
       "Backup Camera",
       "Alloy Wheels"
     ],
-    "image": "/images/toyota/toyota6.avif",
+    "image": "/images/Toyota/Toyota6.avif",
     "available": true,
     "slug": "toyota-toyotafortuner-fortuner"
   },
@@ -270,7 +270,7 @@
       "Backup Camera",
       "Cruise Control"
     ],
-    "image": "/images/toyota/toyota7.avif",
+    "image": "/images/Toyota/Toyota7.avif",
     "available": true,
     "slug": "toyota-toyota4runner-4runner"
   },
@@ -290,7 +290,7 @@
       "Bluetooth",
       "Backup Camera"
     ],
-    "image": "/images/toyota/toyota8.avif",
+    "image": "/images/Toyota/Toyota8.avif",
     "available": true,
     "slug": "toyota-toyotavenza-venza"
   },
@@ -310,7 +310,7 @@
       "Bluetooth",
       "Backup Camera"
     ],
-    "image": "/images/toyota/toyota9.avif",
+    "image": "/images/Toyota/Toyota9.avif",
     "available": true,
     "slug": "toyota-toyotamatrix-matrix"
   }
