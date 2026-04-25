@@ -108,7 +108,7 @@ export default function Navbar() {
               {/* Logo Text */}
               <div className="flex flex-col">
                 <span className="text-lg sm:text-xl font-bold text-white leading-tight tracking-wide">
-                  Agape
+                  Easy
                 </span>
                 <span className="text-xs sm:text-sm font-medium text-yellow-500 leading-tight tracking-widest">
                   AUTOS

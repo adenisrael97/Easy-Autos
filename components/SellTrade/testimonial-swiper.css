@@ -1,43 +1,44 @@
-
 .swiper-button-next,
 .swiper-button-prev {
-  color: #eab308;
-  /* gold-600 */
-  width: 2rem;
-  height: 2rem;
+  color: var(--accent);
+  width: 2.25rem;
+  height: 2.25rem;
   top: 50%;
   transform: translateY(-50%);
   border-radius: 9999px;
-  background: rgba(0,0,0,0.12);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-base);
+  box-shadow: var(--shadow-sm);
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 1;
   font-weight: bold;
-  margin-top: 0;
-  margin-bottom: 0;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: var(--accent);
+  color: var(--text-on-accent);
 }
 
 .swiper-button-next:after,
 .swiper-button-prev:after {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 
+.swiper-button-next { right: -0.5rem; }
+.swiper-button-prev { left: -0.5rem; }
 
-.swiper-button-next {
-  right: -1.5rem;
+.swiper-pagination-bullet {
+  background: var(--bg-strong);
+  opacity: 1;
 }
-.swiper-button-prev {
-  left: -1.5rem;
+.swiper-pagination-bullet-active {
+  background: var(--accent);
 }
 
 @media (max-width: 640px) {
   .swiper-button-next,
-  .swiper-button-prev {
-    width: 1.5rem;
-    height: 1.5rem;
-    font-size: 1rem;
-  }
+  .swiper-button-prev { display: none; }
 }

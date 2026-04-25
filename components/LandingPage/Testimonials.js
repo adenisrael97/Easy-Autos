@@ -8,7 +8,7 @@ const testimonials = [
 	{
 		name: 'Jane Doe',
 		position: 'Business Owner',
-		content: 'Agape Autos made my car purchase seamless and enjoyable. Their team is knowledgeable and truly cares about customer satisfaction.',
+		content: 'Easy Autos made my car purchase seamless and enjoyable. Their team is knowledgeable and truly cares about customer satisfaction.',
 		rating: 5,
 	},
 	{
@@ -20,7 +20,7 @@ const testimonials = [
 	{
 		name: 'Linda Johnson',
 		position: 'Entrepreneur',
-		content: 'Great selection of vehicles and excellent service. I highly recommend Agape Autos to anyone looking for quality cars.',
+		content: 'Great selection of vehicles and excellent service. I highly recommend Easy Autos to anyone looking for quality cars.',
 		rating: 4,
 	},
 	{
@@ -49,7 +49,7 @@ export default function Testimonials() {
 			<h3 className="text-xl sm:text-2xl md:text-3xl font-thin text-white mb-4">What Our Clients Say</h3>
 			{/* Small content */}
 			<p className="text-gray-300 text-sm sm:text-base md:text-lg mb-8 max-w-2xl text-center font-thin">
-				We are proud to have earned the trust of our clients. Here’s what some of them have to say about their experience with Agape Autos.
+				We are proud to have earned the trust of our clients. Here’s what some of them have to say about their experience with Easy Autos.
 			</p>
 			{/* Sliding Testimonial Cards */}
 			<div className="relative w-full max-w-2xl h-64 flex items-center justify-center px-2 sm:px-0">
@@ -118,7 +118,7 @@ export default function Testimonials() {
 						<span className="text-yellow-400 text-2xl mr-4">✉️</span>
 						<div>
 							<h4 className="text-lg font-thin text-white mb-1">Email Us</h4>
-							<p className="text-gray-300 text-sm font-thin">info@agapeautos.com</p>
+							<p className="text-gray-300 text-sm font-thin">info@easyautos.com</p>
 						</div>
 					</div>
 					{/* Card 4: Business Hours */}

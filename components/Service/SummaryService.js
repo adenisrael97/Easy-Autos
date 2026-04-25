@@ -1,32 +1,38 @@
 import Link from "next/link";
+import { FaArrowRight } from "react-icons/fa";
 
 export default function SummaryService() {
-    return (
-        <div className="bg-linear-to-r from-gray-900 via-black to-gray-800 rounded-3xl shadow-lg px-6 py-12 max-w-4xl mx-auto my-12 text-center">
-            <h2 className="text-3xl font-extrabold mb-4 text-white">Service Summary</h2>
-            <p className="text-gray-300 text-lg mb-8 font-light max-w-2xl mx-auto">
-                At Agape Autos, we are committed to providing a full spectrum of automotive services, from expert repairs and inspections to premium detailing and customer support. Our experienced team ensures your vehicle receives the best care, so you can drive with confidence and peace of mind.
-            </p>
-                        <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6">
-                                <Link
-                                    href="/contact"
-                                    className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-3 py-1.5 text-xs rounded-full shadow-md transition-colors duration-200 min-w-30 flex items-center justify-center gap-1 mx-auto"
-                                >
-                                    Contact Us
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 ml-1">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                                    </svg>
-                                </Link>
-                                <Link
-                                    href="/Inventory"
-                                    className="bg-black hover:bg-gray-800 text-white font-semibold px-3 py-1.5 text-xs rounded-full shadow-md transition-colors duration-200 min-w-30 flex items-center justify-center gap-1 mx-auto"
-                                >
-                                    View Inventory
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 ml-1">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                                    </svg>
-                                </Link>
-                        </div>
+  return (
+    <div className="px-4 py-12">
+      <div className="bg-mesh border border-line rounded-3xl shadow-card p-8 sm:p-12 max-w-4xl mx-auto text-center">
+        <p className="text-xs font-semibold text-accent uppercase tracking-widest mb-2">
+          Ready When You Are
+        </p>
+        <h2 className="text-2xl sm:text-3xl font-black text-fg mb-4">
+          Premium service, every visit
+        </h2>
+        <p className="text-soft text-sm sm:text-base mb-8 max-w-2xl mx-auto">
+          From expert repairs and inspections to premium detailing and customer support — our
+          experienced team ensures your vehicle receives the best care so you can drive with
+          confidence and peace of mind.
+        </p>
+        <div className="flex flex-col sm:flex-row justify-center gap-3">
+          <Link
+            href="/contact"
+            className="group inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-accent text-on-accent font-semibold text-sm shadow-soft hover:bg-accent-hover hover:scale-105 active:scale-100 transition-all duration-200"
+          >
+            Contact Us
+            <FaArrowRight className="text-xs group-hover:translate-x-0.5 transition-transform" />
+          </Link>
+          <Link
+            href="/Inventory"
+            className="group inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-elevated border border-line text-fg font-semibold text-sm hover:border-accent/40 hover:text-accent transition-all duration-200"
+          >
+            View Inventory
+            <FaArrowRight className="text-xs group-hover:translate-x-0.5 transition-transform" />
+          </Link>
         </div>
-    );
+      </div>
+    </div>
+  );
 }

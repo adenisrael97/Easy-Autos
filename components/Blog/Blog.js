@@ -1,159 +1,146 @@
 "use client";
-import React from 'react';
-import Image from 'next/image';
 
-export default function Blog () {
-    // ...existing code...
-    // Imports
-    // import React, { useState } from 'react';
-    // import { FaCarBattery, FaBolt, FaTools, FaShoppingCart, FaPaintBrush, FaMicrochip, FaNewspaper } from 'react-icons/fa';
+import { useState, useMemo } from "react";
+import Image from "next/image";
+import { FaSearch, FaArrowRight, FaTimes } from "react-icons/fa";
 
-    // Categories and News Cards
-    const categories = [
-        { label: 'All', icon: <span>📰</span> },
-        { label: 'Electric Vehicles', icon: <span>⚡</span> },
-        { label: 'Buying Guide', icon: <span>🛒</span> },
-        { label: 'Maintenance', icon: <span>🛠️</span> },
-        { label: 'Design', icon: <span>🎨</span> },
-        { label: 'Technology', icon: <span>💻</span> },
-    ];
-    const newsCards = [
-        {
-            title: 'The Rise of Electric Cars',
-            category: 'Electric Vehicles',
-            img: '/images/bmw/bmw1.avif',
-            icon: <span>⚡</span>,
-            desc: 'Explore how electric vehicles are changing the automotive landscape and what it means for buyers.'
-        },
-        {
-            title: 'How to Buy Your First Car',
-            category: 'Buying Guide',
-            img: '/images/honda/honda1.avif',
-            icon: <span>🛒</span>,
-            desc: 'A step-by-step guide to buying your first car, from research to negotiation.'
-        },
-        {
-            title: 'Maintaining Your Vehicle',
-            category: 'Maintenance',
-            img: '/images/mercedes/Mercedes1.avif',
-            icon: <span>🛠️</span>,
-            desc: 'Tips and tricks for keeping your car in top shape and extending its lifespan.'
-        },
-        {
-            title: '2026 Car Design Trends',
-            category: 'Design',
-            img: '/images/lexus/lexus1.avif',
-            icon: <span>🎨</span>,
-            desc: 'Discover the latest design innovations in the automotive industry.'
-        },
-        {
-            title: 'Tech Innovations in Cars',
-            category: 'Technology',
-            img: '/images/toyota/Toyota1.avif',
-            icon: <span>💻</span>,
-            desc: 'A look at the newest technology features in modern vehicles.'
-        },
-        {
-            title: 'Agape Autos News',
-            category: 'All',
-            img: '/images/bmw/bmw2.avif',
-            icon: <span>📰</span>,
-            desc: 'Updates and news from Agape Autos, your trusted dealership.'
-        },
-        {
-            title: 'Electric SUVs: The Future',
-            category: 'Electric Vehicles',
-            img: '/images/honda/honda2.avif',
-            icon: <span>⚡</span>,
-            desc: 'Why electric SUVs are becoming the go-to choice for families.'
-        },
-        {
-            title: 'Luxury Car Maintenance',
-            category: 'Maintenance',
-            img: '/images/mercedes/Mercedes2.avif',
-            icon: <span>🛠️</span>,
-            desc: 'How to care for your luxury vehicle and keep it running smoothly.'
-        },
-        {
-            title: 'Buying Guide: Used Cars',
-            category: 'Buying Guide',
-            img: '/images/lexus/lexus2.avif',
-            icon: <span>🛒</span>,
-            desc: 'Everything you need to know about buying a used car.'
-        },
-        {
-            title: 'Smart Car Tech in 2026',
-            category: 'Technology',
-            img: '/images/toyota/Toyota2.avif',
-            icon: <span>💻</span>,
-            desc: 'The rise of smart technology in vehicles and what to expect next.'
-        },
-    ];
+const categories = [
+  { label: "All", emoji: "📰" },
+  { label: "Electric Vehicles", emoji: "⚡" },
+  { label: "Buying Guide", emoji: "🛒" },
+  { label: "Maintenance", emoji: "🛠️" },
+  { label: "Design", emoji: "🎨" },
+  { label: "Technology", emoji: "💻" },
+];
 
-    // State
-    const [search, setSearch] = React.useState('');
-    const [activeCategory, setActiveCategory] = React.useState('All');
-    const filteredCards = newsCards.filter(card =>
-        (activeCategory === 'All' || card.category === activeCategory) &&
-        (card.title.toLowerCase().includes(search.toLowerCase()) || card.desc.toLowerCase().includes(search.toLowerCase()))
+const newsCards = [
+  { title: "The Rise of Electric Cars", category: "Electric Vehicles", img: "/images/bmw/bmw1.avif", desc: "Explore how electric vehicles are changing the automotive landscape and what it means for buyers.", readTime: "4 min" },
+  { title: "How to Buy Your First Car", category: "Buying Guide", img: "/images/honda/honda1.avif", desc: "A step-by-step guide to buying your first car, from research to negotiation.", readTime: "6 min" },
+  { title: "Maintaining Your Vehicle", category: "Maintenance", img: "/images/mercedes/Mercedes1.avif", desc: "Tips and tricks for keeping your car in top shape and extending its lifespan.", readTime: "5 min" },
+  { title: "2026 Car Design Trends", category: "Design", img: "/images/lexus/lexus1.avif", desc: "Discover the latest design innovations in the automotive industry.", readTime: "3 min" },
+  { title: "Tech Innovations in Cars", category: "Technology", img: "/images/Toyota/Toyota1.avif", desc: "A look at the newest technology features in modern vehicles.", readTime: "5 min" },
+  { title: "Easy Autos News", category: "All", img: "/images/bmw/bmw2.avif", desc: "Updates and news from Easy Autos, your trusted dealership.", readTime: "2 min" },
+  { title: "Electric SUVs: The Future", category: "Electric Vehicles", img: "/images/honda/honda2.avif", desc: "Why electric SUVs are becoming the go-to choice for families.", readTime: "4 min" },
+  { title: "Luxury Car Maintenance", category: "Maintenance", img: "/images/mercedes/Mercedes2.avif", desc: "How to care for your luxury vehicle and keep it running smoothly.", readTime: "6 min" },
+  { title: "Buying Guide: Used Cars", category: "Buying Guide", img: "/images/lexus/lexus2.avif", desc: "Everything you need to know about buying a used car.", readTime: "7 min" },
+  { title: "Smart Car Tech in 2026", category: "Technology", img: "/images/Toyota/Toyota2.avif", desc: "The rise of smart technology in vehicles and what to expect next.", readTime: "5 min" },
+];
+
+export default function Blog() {
+  const [search, setSearch] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    return newsCards.filter(
+      (card) =>
+        (activeCategory === "All" || card.category === activeCategory) &&
+        (!q || card.title.toLowerCase().includes(q) || card.desc.toLowerCase().includes(q))
     );
+  }, [search, activeCategory]);
 
-    return (
-        <section className="w-full">
-            <div className="w-full bg-linear-to-br from-gray-700 via-gray-900 to-black py-16 px-4 rounded-2xl shadow-2xl flex flex-col items-center text-center">
-                <p className="text-3xl md:text-4xl font-extrabold text-yellow-500 tracking-wide mb-2">BLOG and News</p>
-                <p className="text-xl md:text-2xl font-semibold text-white mb-4">Automotive Insights</p>
-                <p className="max-w-2xl text-gray-200 text-base md:text-lg font-light mb-8">
-                    Stay up to date with the latest trends, news, and expert advice from the world of automobiles. From buying tips and maintenance guides to industry innovations and Agape Autos updates, our blog is your trusted source for all things automotive.
-                </p>
-                {/* Search and Filter */}
-                <div className="w-full max-w-2xl flex flex-col md:flex-row items-center gap-4 mb-8">
-                    <input
-                        type="text"
-                        value={search}
-                        onChange={e => setSearch(e.target.value)}
-                        placeholder="Search news..."
-                        className="flex-1 px-4 py-3 rounded-lg border border-gray-400 bg-gray-100 text-black focus:outline-none focus:ring-2 focus:ring-yellow-500"
-                    />
-                    <div className="flex flex-wrap gap-2 mt-2 md:mt-0">
-                        {categories.map(cat => (
-                            <button
-                                key={cat.label}
-                                onClick={() => setActiveCategory(cat.label)}
-                                className={`px-4 py-2 rounded-lg font-semibold flex items-center gap-2 border transition-colors duration-200 ${activeCategory === cat.label ? 'bg-yellow-500 text-black border-yellow-500' : 'bg-gray-800 text-white border-gray-700 hover:bg-yellow-500 hover:text-black'}`}
-                            >
-                                {cat.icon}
-                                {cat.label}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-                {/* News Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 w-full max-w-6xl mx-auto">
-                    {filteredCards.map((card, idx) => (
-                        <div key={idx} className="bg-white rounded-2xl shadow-xl border border-gray-200 flex flex-col overflow-hidden hover:shadow-2xl transition-shadow duration-200">
-                            <div className="relative w-full h-56">
-                                <Image
-                                    src={card.img}
-                                    alt={card.title}
-                                    layout="fill"
-                                    objectFit="cover"
-                                    className="object-cover w-full h-full"
-                                />
-                            </div>
-                            <div className="p-6 flex flex-col flex-1">
-                                <div className="flex items-center gap-2 mb-2">
-                                    {card.icon}
-                                    <span className="text-sm font-bold text-gray-700">{card.category}</span>
-                                </div>
-                                <h3 className="text-xl font-bold text-black mb-2">{card.title}</h3>
-                                <p className="text-gray-600 flex-1 mb-4">{card.desc}</p>
-                                <button className="mt-auto bg-black text-yellow-500 font-semibold px-4 py-2 rounded-lg hover:bg-yellow-500 hover:text-black transition-colors duration-200">Read More</button>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+  return (
+    <section className="w-full">
+      <div className="relative bg-mesh py-20 sm:py-24 px-4 overflow-hidden border-b border-line">
+        <div className="absolute -top-32 -right-32 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="relative max-w-3xl mx-auto text-center">
+          <p className="text-xs font-semibold text-accent uppercase tracking-widest mb-2">
+            Blog & News
+          </p>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-fg mb-4">
+            Automotive Insights
+          </h1>
+          <p className="text-soft text-sm md:text-base max-w-2xl mx-auto mb-8">
+            Stay up to date with the latest trends, news, and expert advice from the world of
+            automobiles — buying tips, maintenance guides, industry innovations and more.
+          </p>
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 -mt-10 relative">
+        <div className="bg-surface border border-line rounded-2xl shadow-card p-4 sm:p-5">
+          <div className="flex flex-col sm:flex-row gap-3 mb-4">
+            <div className="flex-1 relative">
+              <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-faint text-sm pointer-events-none" />
+              <input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search articles..."
+                className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-elevated text-fg text-sm border border-line placeholder-faint focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+              />
+              {search && (
+                <button
+                  onClick={() => setSearch("")}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-faint hover:text-fg cursor-pointer"
+                  aria-label="Clear search"
+                >
+                  <FaTimes className="text-sm" />
+                </button>
+              )}
             </div>
-        </section>
-    );
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {categories.map((cat) => (
+              <button
+                key={cat.label}
+                onClick={() => setActiveCategory(cat.label)}
+                className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
+                  activeCategory === cat.label
+                    ? "bg-accent text-on-accent border-accent shadow-soft"
+                    : "bg-page text-soft border-line hover:border-accent/40 hover:text-accent"
+                }`}
+              >
+                <span>{cat.emoji}</span>
+                {cat.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 py-12">
+        {filtered.length === 0 ? (
+          <div className="text-center py-16">
+            <p className="text-soft">No articles match your search.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filtered.map((card) => (
+              <article
+                key={card.title}
+                className="group bg-surface rounded-2xl border border-line overflow-hidden flex flex-col shadow-soft hover:shadow-card hover:-translate-y-1 hover:border-accent/30 transition-all duration-300"
+              >
+                <div className="relative w-full h-48 overflow-hidden bg-elevated">
+                  <Image
+                    src={card.img}
+                    alt={card.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-5 flex flex-col flex-1">
+                  <div className="flex items-center justify-between mb-3 text-xs">
+                    <span className="px-2.5 py-1 rounded-full bg-accent-soft text-accent font-semibold">
+                      {card.category}
+                    </span>
+                    <span className="text-faint">{card.readTime} read</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-fg mb-2 group-hover:text-accent transition-colors">
+                    {card.title}
+                  </h3>
+                  <p className="text-soft text-sm flex-1 mb-4">{card.desc}</p>
+                  <button className="inline-flex items-center gap-2 text-accent text-sm font-semibold hover:text-accent-hover transition-colors w-fit cursor-pointer">
+                    Read More
+                    <FaArrowRight className="text-xs group-hover:translate-x-0.5 transition-transform" />
+                  </button>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
 }

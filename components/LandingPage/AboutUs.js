@@ -22,7 +22,7 @@ export default function AboutUs() {
     },
     {
       title: 'Our Values',
-      desc: 'Integrity, customer focus, and continuous improvement drive everything we do at Agape Autos.',
+      desc: 'Integrity, customer focus, and continuous improvement drive everything we do at Easy Autos.',
       style: 'bg-black/90 text-yellow-400',
     },
     {
@@ -40,7 +40,7 @@ export default function AboutUs() {
         <h3 className="text-xl sm:text-2xl md:text-3xl font-thin text-white mb-2">Driving Excellence</h3>
         <h4 className="text-base sm:text-lg md:text-xl font-thin text-yellow-400 mb-4">Since 2009</h4>
         <p className="text-gray-200 text-sm sm:text-base md:text-lg mb-6 font-thin">
-          Agape Autos has been a leader in the automotive industry since 2009, providing customers with a handpicked selection of luxury, performance, and reliable vehicles. Our commitment to excellence is reflected in every interaction, from your first inquiry to long after you drive off the lot. We believe in building lasting relationships, offering transparent pricing, and delivering unmatched customer satisfaction.
+          Easy Autos has been a leader in the automotive industry since 2009, providing customers with a handpicked selection of luxury, performance, and reliable vehicles. Our commitment to excellence is reflected in every interaction, from your first inquiry to long after you drive off the lot. We believe in building lasting relationships, offering transparent pricing, and delivering unmatched customer satisfaction.
         </p>
         {/* Feature List */}
         <ul className="mb-6 space-y-2 sm:space-y-3">

@@ -11,7 +11,7 @@ export default function Footer () {
                                 <span className="text-2xl font-bold text-yellow-400 tracking-widest">AGAPE</span>
                                 <span className="text-lg font-semibold text-white">AUTOS</span>
                             </div>
-                            <p className="text-sm text-gray-400 max-w-xs mb-2">Premium vehicles, exceptional service. Experience luxury, reliability, and trust with Agape Autos.</p>
+                            <p className="text-sm text-gray-400 max-w-xs mb-2">Premium vehicles, exceptional service. Experience luxury, reliability, and trust with Easy Autos.</p>
                             <div className="flex gap-3 mt-2">
                                 <a href="#" aria-label="Facebook" className="hover:text-yellow-400 transition"><FaFacebookF size={20} /></a>
                                 <a href="#" aria-label="Instagram" className="hover:text-yellow-400 transition"><FaInstagram size={20} /></a>
@@ -63,14 +63,14 @@ export default function Footer () {
                             <ul className="space-y-2 text-sm text-gray-400">
                                 <li><span className="text-yellow-400">Address:</span> 123 Main Street, City, Country</li>
                                 <li><span className="text-yellow-400">Phone:</span> +234 800 123 4567</li>
-                                <li><span className="text-yellow-400">Email:</span> info@agapeautos.com</li>
+                                <li><span className="text-yellow-400">Email:</span> info@easyautos.com</li>
                                 <li><span className="text-yellow-400">Hours:</span> Mon - Sat: 8am - 6pm</li>
                             </ul>
                         </div>
                     </div>
                     {/* Bottom Bar */}
                     <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between pt-6 text-xs text-gray-500">
-                        <span>&copy; {new Date().getFullYear()} Agape Autos. All rights reserved.</span>
+                        <span>&copy; {new Date().getFullYear()} Easy Autos. All rights reserved.</span>
                         <div className="flex gap-4 mt-2 md:mt-0">
                             <a href="#" className="hover:text-yellow-400 transition">Privacy Policy</a>
                             <a href="#" className="hover:text-yellow-400 transition">Terms of Service</a>

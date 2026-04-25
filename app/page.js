@@ -1,20 +1,21 @@
-import Hero from "@/components/LandingPage/Hero";
-import CTA from "@/components/LandingPage/CTA";
-import Services from "@/components/LandingPage/Services";
-import AboutUs from "@/components/LandingPage/AboutUs";
-import TestimonialsClient from "@/components/LandingPage/TestimonialsClient";
-
-
+import Hero from "@/components/sections/Hero";
+import StatsBar from "@/components/sections/StatsBar";
+import FeaturedCars from "@/components/sections/FeaturedCars";
+import Services from "@/components/sections/Services";
+import AboutUs from "@/components/sections/AboutUs";
+import Testimonials from "@/components/sections/Testimonials";
+import ContactSection from "@/components/sections/ContactSection";
 
 export default function HomePage() {
   return (
-    <section>
+    <main>
       <Hero />
-      <CTA />
+      <StatsBar />
+      <FeaturedCars />
       <Services />
       <AboutUs />
-      <TestimonialsClient />
-    </section>
-   
-  )
+      <Testimonials />
+      <ContactSection />
+    </main>
+  );
 }

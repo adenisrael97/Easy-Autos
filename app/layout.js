@@ -1,7 +1,12 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import ThemeScript from "@/components/theme/ThemeScript";
+import ScrollProgress from "@/components/feedback/ScrollProgress";
+import BackToTop from "@/components/feedback/BackToTop";
+import { ToastProvider } from "@/components/feedback/Toaster";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,27 +21,38 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Agape Autos | Premium Vehicles",
-  description: "Agape Autos — Premium vehicles, exceptional service. Explore our curated selection of Toyota, Mercedes, Lexus, BMW, and Honda vehicles.",
+  title: "Easy Autos | Premium Vehicles",
+  description:
+    "Easy Autos — Premium vehicles, exceptional service. Explore our curated selection of Toyota, Mercedes, Lexus, BMW, and Honda vehicles across Nigeria.",
+  keywords:
+    "car dealership, used cars, new cars, Toyota, Mercedes, BMW, Lexus, Honda, Nigeria, Lagos",
+  openGraph: {
+    title: "Easy Autos | Premium Vehicles",
+    description:
+      "Discover your dream car at Easy Autos. Premium selection, transparent pricing, exceptional service.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {/* Preconnect for Google Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* Preload critical font files (optional, for above-the-fold text) */}
-        {/* <link rel="preload" as="font" href="https://fonts.gstatic.com/s/geist/v1/Geist-Regular.woff2" type="font/woff2" crossOrigin="anonymous" /> */}
+        <ThemeScript />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Navbar />
-        {children}
-        <Footer />
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-page text-fg`}>
+        <ThemeProvider>
+          <ToastProvider>
+            <ScrollProgress />
+            <Navbar />
+            {children}
+            <Footer />
+            <BackToTop />
+          </ToastProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

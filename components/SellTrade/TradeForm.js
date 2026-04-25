@@ -1,16 +1,11 @@
+"use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
+import { FaUpload, FaArrowRight } from "react-icons/fa";
+import Button from "@/components/ui/Button";
+import { useToast } from "@/components/feedback/Toaster";
 
-// Heroicons outline upload icon
-function UploadIcon({ className }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 16V4m0 0l-4 4m4-4l4 4m-9 8v2a2 2 0 002 2h6a2 2 0 002-2v-2" />
-    </svg>
-  );
-}
-
-const initialState = {
+const initial = {
   fullName: "",
   phone: "",
   email: "",
@@ -24,26 +19,42 @@ const initialState = {
   budget: "",
   location: "",
   notes: "",
-  images: []
+  images: [],
 };
 
-export default function TradeForm({ onSuccess }) {
-  const [form, setForm] = useState(initialState);
+const fields = [
+  { name: "fullName", label: "Full Name", required: true },
+  { name: "phone", label: "Phone", required: true, type: "tel" },
+  { name: "email", label: "Email (optional)", type: "email" },
+  { name: "currentBrand", label: "Current Brand", required: true },
+  { name: "currentModel", label: "Current Model", required: true },
+  { name: "currentYear", label: "Current Year", required: true, type: "number" },
+  { name: "currentMileage", label: "Current Mileage (km)", required: true, type: "number" },
+  { name: "currentCondition", label: "Current Condition", required: true },
+  { name: "desiredBrand", label: "Desired Brand", required: true },
+  { name: "desiredModel", label: "Desired Model", required: true },
+  { name: "budget", label: "Budget", required: true },
+  { name: "location", label: "Location", required: true },
+];
+
+export default function TradeForm() {
+  const [form, setForm] = useState(initial);
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
 
   function handleChange(e) {
     const { name, value, files } = e.target;
     if (name === "images") {
-      setForm(f => ({ ...f, images: Array.from(files) }));
+      setForm((f) => ({ ...f, images: Array.from(files) }));
     } else {
-      setForm(f => ({ ...f, [name]: value }));
+      setForm((f) => ({ ...f, [name]: value }));
     }
   }
 
   function validate() {
-    if (!form.fullName || !form.phone || !form.currentBrand || !form.currentModel || !form.currentYear || !form.currentMileage || !form.currentCondition || !form.desiredBrand || !form.desiredModel || !form.budget || !form.location) {
-      return "Please fill in all required fields.";
+    for (const f of fields) {
+      if (f.required && !form[f.name]) return "Please fill in all required fields.";
     }
     return "";
   }
@@ -53,42 +64,85 @@ export default function TradeForm({ onSuccess }) {
     const err = validate();
     if (err) return setError(err);
     setError("");
-    setSuccess(true);
-    onSuccess && onSuccess();
-    // Simulate backend
-    console.log("Trade Form Data:", form);
-    setTimeout(() => setSuccess(false), 3000);
-    setForm(initialState);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      toast("Trade-in request received — we'll be in touch shortly.", { variant: "success" });
+      setForm(initial);
+    }, 900);
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg p-8 max-w-xl mx-auto w-full transition-all duration-500">
-      <h3 className="text-xl font-bold mb-4 text-black">Trade-In / Swap</h3>
-      {error && <div className="mb-3 text-red-600 text-sm">{error}</div>}
-      {success && <div className="mb-3 text-green-600 text-sm font-semibold">Form submitted successfully!</div>}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <input name="fullName" value={form.fullName} onChange={handleChange} placeholder="Full Name*" className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-50 text-gray-900 placeholder-gray-400 transition" />
-        <input name="phone" value={form.phone} onChange={handleChange} placeholder="Phone*" className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-50 text-gray-900 placeholder-gray-400 transition" />
-        <input name="email" value={form.email} onChange={handleChange} placeholder="Email (optional)" className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-50 text-gray-900 placeholder-gray-400 transition" />
-        <input name="currentBrand" value={form.currentBrand} onChange={handleChange} placeholder="Current Car Brand*" className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-50 text-gray-900 placeholder-gray-400 transition" />
-        <input name="currentModel" value={form.currentModel} onChange={handleChange} placeholder="Current Model*" className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-50 text-gray-900 placeholder-gray-400 transition" />
-        <input name="currentYear" value={form.currentYear} onChange={handleChange} placeholder="Current Year*" className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-50 text-gray-900 placeholder-gray-400 transition" />
-        <input name="currentMileage" value={form.currentMileage} onChange={handleChange} placeholder="Current Mileage*" className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-50 text-gray-900 placeholder-gray-400 transition" />
-        <input name="currentCondition" value={form.currentCondition} onChange={handleChange} placeholder="Current Condition*" className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-50 text-gray-900 placeholder-gray-400 transition" />
-        <input name="desiredBrand" value={form.desiredBrand} onChange={handleChange} placeholder="Desired Car Brand*" className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-50 text-gray-900 placeholder-gray-400 transition" />
-        <input name="desiredModel" value={form.desiredModel} onChange={handleChange} placeholder="Desired Model*" className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-50 text-gray-900 placeholder-gray-400 transition" />
-        <input name="budget" value={form.budget} onChange={handleChange} placeholder="Budget*" className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-50 text-gray-900 placeholder-gray-400 transition" />
-        <input name="location" value={form.location} onChange={handleChange} placeholder="Location*" className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-50 text-gray-900 placeholder-gray-400 transition" />
+    <form
+      onSubmit={handleSubmit}
+      className="bg-surface rounded-2xl border border-line shadow-card p-6 sm:p-8 max-w-2xl mx-auto w-full"
+    >
+      <h3 className="text-xl font-bold text-fg mb-1">Trade-In / Swap</h3>
+      <p className="text-soft text-sm mb-5">
+        Tell us about your current car and what you&apos;re hoping to drive next.
+      </p>
+
+      {error && (
+        <div className="mb-4 p-3 rounded-lg bg-bad/15 border border-bad/30 text-bad text-sm">
+          {error}
+        </div>
+      )}
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {fields.map((f) => (
+          <label key={f.name} className="flex flex-col gap-1">
+            <span className="text-faint text-xs font-medium">
+              {f.label}
+              {f.required && " *"}
+            </span>
+            <input
+              name={f.name}
+              type={f.type || "text"}
+              value={form[f.name]}
+              onChange={handleChange}
+              placeholder={f.label}
+              className="w-full px-3 py-2 rounded-lg bg-elevated text-fg text-sm border border-line placeholder-faint focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition"
+            />
+          </label>
+        ))}
       </div>
-      <textarea name="notes" value={form.notes} onChange={handleChange} placeholder="Notes" className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-50 text-gray-900 placeholder-gray-400 transition mt-4" rows={2} />
-      <div className="mt-4">
-        <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
-          <UploadIcon className="w-5 h-5 text-yellow-500" />
+
+      <label className="flex flex-col gap-1 mt-4">
+        <span className="text-faint text-xs font-medium">Notes</span>
+        <textarea
+          name="notes"
+          value={form.notes}
+          onChange={handleChange}
+          rows={3}
+          placeholder="Anything else we should know?"
+          className="w-full px-3 py-2 rounded-lg bg-elevated text-fg text-sm border border-line placeholder-faint focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition resize-none"
+        />
+      </label>
+
+      <label className="flex flex-col gap-1 mt-4">
+        <span className="text-faint text-xs font-medium flex items-center gap-2">
+          <FaUpload className="text-accent" />
           Upload Images
-        </label>
-        <input name="images" type="file" multiple onChange={handleChange} className="block w-full text-sm text-gray-600" />
-      </div>
-      <button type="submit" className="w-full mt-6 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 rounded-full transition-colors duration-200">Submit</button>
+        </span>
+        <input
+          name="images"
+          type="file"
+          multiple
+          onChange={handleChange}
+          className="block w-full text-sm text-soft file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border file:border-line file:bg-elevated file:text-fg file:font-medium file:cursor-pointer hover:file:bg-strong"
+        />
+      </label>
+
+      <Button
+        type="submit"
+        variant="primary"
+        size="lg"
+        loading={loading}
+        className="w-full mt-6"
+        icon={!loading && <FaArrowRight className="text-xs" />}
+      >
+        {loading ? "Submitting..." : "Submit"}
+      </Button>
     </form>
   );
 }

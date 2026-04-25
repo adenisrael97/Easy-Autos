@@ -1,19 +1,254 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ─────────────────────────────────────────────────────
+   Theme tokens — CSS variables drive the entire palette.
+   Replaces pure black with a neutral gray scale for a
+   softer, more modern look in both light and dark modes.
+   ───────────────────────────────────────────────────── */
+
+:root,
+[data-theme="dark"] {
+  /* Surfaces (gray instead of pure black) */
+  --bg-base: #1a1b1c;        /* page background */
+  --bg-surface: #2a2c2f;     /* cards */
+  --bg-elevated: #273345;    /* inputs, hover surfaces */
+  --bg-strong: #374151;      /* even more elevated */
+  --bg-overlay: rgba(17, 24, 39, 0.78);
+
+  /* Text */
+  --text-primary: #f9fafb;
+  --text-secondary: #eef2f6;
+  --text-muted: #e9ecf1;
+  --text-on-accent: #f2f4f9;
+
+  /* Borders */
+  --border-base: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+
+  /* Accent (consistent across themes) */
+  --accent: #facc15;
+  --accent-hover: #eab308;
+  --accent-soft: rgba(250, 204, 21, 0.12);
+  --accent-ring: rgba(250, 204, 21, 0.45);
+
+  /* Semantic */
+  --success: #34d399;
+  --danger: #f87171;
+  --info: #60a5fa;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.45);
+
+  color-scheme: dark;
 }
 
+[data-theme="light"] {
+  --bg-base: #f3f4f6;
+  --bg-surface: #ffffff;
+  --bg-elevated: #f9fafb;
+  --bg-strong: #e5e7eb;
+  --bg-overlay: rgba(243, 244, 246, 0.8);
+
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --text-muted: #6b7280;
+  --text-on-accent: #111827;
+
+  --border-base: rgba(17, 24, 39, 0.08);
+  --border-strong: rgba(17, 24, 39, 0.16);
+
+  --accent: #ca8a04;
+  --accent-hover: #a16207;
+  --accent-soft: rgba(202, 138, 4, 0.1);
+  --accent-ring: rgba(202, 138, 4, 0.4);
+
+  --success: #059669;
+  --danger: #dc2626;
+  --info: #2563eb;
+
+  --shadow-sm: 0 2px 6px rgba(17, 24, 39, 0.05);
+  --shadow-md: 0 8px 24px rgba(17, 24, 39, 0.08);
+  --shadow-lg: 0 18px 48px rgba(17, 24, 39, 0.12);
+
+  color-scheme: light;
+}
+
+/* ─────────────────────────────────────────────────────
+   Tailwind v4 — register tokens as utility colors.
+   Enables `bg-base`, `text-primary`, `border-border`, etc.
+   ───────────────────────────────────────────────────── */
+
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-page: var(--bg-base);
+  --color-surface: var(--bg-surface);
+  --color-elevated: var(--bg-elevated);
+  --color-strong: var(--bg-strong);
+  --color-overlay: var(--bg-overlay);
+
+  --color-fg: var(--text-primary);
+  --color-soft: var(--text-secondary);
+  --color-faint: var(--text-muted);
+  --color-on-accent: var(--text-on-accent);
+
+  --color-line: var(--border-base);
+  --color-line-strong: var(--border-strong);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+
+  --color-ok: var(--success);
+  --color-bad: var(--danger);
+  --color-note: var(--info);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+/* ─────────────────────────────────────────────────────
+   Base
+   ───────────────────────────────────────────────────── */
+
+html {
+  background: var(--bg-base);
+  color: var(--text-primary);
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  transition: background-color 250ms ease, color 250ms ease;
+  min-height: 100vh;
+}
+
+* {
+  scroll-behavior: smooth;
+  border-color: var(--border-base);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--text-on-accent);
+}
+
+/* ─────────────────────────────────────────────────────
+   Custom scrollbar (theme-aware)
+   ───────────────────────────────────────────────────── */
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb {
+  background: var(--bg-strong);
+  border-radius: 6px;
+  border: 2px solid var(--bg-base);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { scrollbar-width: none; }
+
+/* ─────────────────────────────────────────────────────
+   Utilities
+   ───────────────────────────────────────────────────── */
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(var(--border-base) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-base) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.bg-mesh {
+  background:
+    radial-gradient(circle at 20% 10%, var(--accent-soft), transparent 40%),
+    radial-gradient(circle at 80% 90%, var(--accent-soft), transparent 40%),
+    var(--bg-base);
+}
+
+.glass {
+  background: var(--bg-overlay);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.shadow-soft { box-shadow: var(--shadow-sm); }
+.shadow-card { box-shadow: var(--shadow-md); }
+.shadow-elevated { box-shadow: var(--shadow-lg); }
+
+/* Smooth image transitions */
+img { transition: opacity 0.3s ease; }
+
+/* Focus ring helper */
+.focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fadeUp 0.6s ease-out both; }
+
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--bg-elevated) 0%,
+    var(--bg-strong) 50%,
+    var(--bg-elevated) 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 1.6s infinite linear;
+}
+
+/* ─────────────────────────────────────────────────────
+   Form inputs (theme-aware)
+   ───────────────────────────────────────────────────── */
+
+.form-input,
+.contact-input,
+.filter-input {
+  width: 100%;
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border-base);
+  border-radius: 0.75rem;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.filter-input {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+}
+.form-input::placeholder,
+.contact-input::placeholder,
+.filter-input::placeholder {
+  color: var(--text-muted);
+}
+.form-input:focus,
+.contact-input:focus,
+.filter-input:focus {
+  outline: none;
+  border-color: transparent;
+  box-shadow: 0 0 0 2px var(--accent-ring);
 }

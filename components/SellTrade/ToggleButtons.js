@@ -1,26 +1,26 @@
 "use client";
 
-import React from "react";
-
 export default function ToggleButtons({ active, setActive }) {
+  const tabs = [
+    { id: "sell", label: "Sell Your Car" },
+    { id: "trade", label: "Trade-In / Swap" },
+  ];
   return (
-    <div className="flex justify-center gap-4 mb-8">
-      <button
-        className={`px-6 py-2 rounded-full font-semibold shadow transition-colors duration-200 border-2 text-base
-          ${active === "sell" ? "bg-yellow-500 border-yellow-500 text-white" : "bg-white border-gray-300 text-gray-800 hover:bg-yellow-100"}`}
-        onClick={() => setActive("sell")}
-        type="button"
-      >
-        Sell Your Car
-      </button>
-      <button
-        className={`px-6 py-2 rounded-full font-semibold shadow transition-colors duration-200 border-2 text-base
-          ${active === "trade" ? "bg-yellow-500 border-yellow-500 text-white" : "bg-white border-gray-300 text-gray-800 hover:bg-yellow-100"}`}
-        onClick={() => setActive("trade")}
-        type="button"
-      >
-        Trade-In / Swap
-      </button>
+    <div className="inline-flex bg-surface border border-line rounded-full p-1 mx-auto mb-8 w-full max-w-md shadow-soft">
+      {tabs.map((t) => (
+        <button
+          key={t.id}
+          type="button"
+          onClick={() => setActive(t.id)}
+          className={`flex-1 px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 cursor-pointer ${
+            active === t.id
+              ? "bg-accent text-on-accent shadow-soft"
+              : "text-soft hover:text-fg"
+          }`}
+        >
+          {t.label}
+        </button>
+      ))}
     </div>
   );
 }

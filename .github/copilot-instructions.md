@@ -1,5 +1,5 @@
 
-# Copilot Instructions for agape (Next.js Car Inventory)
+# Copilot Instructions for Easy Autos (Next.js Car Inventory)
 
 ## Essential Guidance for AI Agents
 
