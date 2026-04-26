@@ -1,107 +1,45 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState } from "react";
 import { FaSearch, FaTimes, FaSlidersH, FaSort, FaHeart } from "react-icons/fa";
 import CarCard from "@/components/cards/CarCard";
-import SkeletonCard from "@/components/ui/SkeletonCard";
 import Button from "@/components/ui/Button";
-import { allCars, BRANDS, FUEL_TYPES, TYPES, SORT_OPTIONS } from "@/lib/cars";
-import { useSavedCars } from "@/lib/useSavedCars";
+import { BRANDS, FUEL_TYPES, TYPES, TRANSMISSIONS, SORT_OPTIONS } from "@/data/cars";
+import { useSavedCars } from "@/hooks/useSavedCars";
+import { useCarFilters } from "@/hooks/useCarFilters";
+import { allCars } from "@/data/cars";
 
-const CARS_PER_PAGE = 12;
-
-const defaultFilters = {
-  search: "",
-  brand: "ALL",
-  fuelType: "All",
-  type: "All",
-  maxPrice: "",
-  maxMileage: "",
-  sort: "newest",
-  showSaved: false,
-};
+const totalInventory = allCars.length;
 
 export default function InventoryClient() {
-  const [filters, setFilters] = useState(defaultFilters);
-  const [currentPage, setCurrentPage] = useState(1);
   const [showFilters, setShowFilters] = useState(false);
+  const [showSaved, setShowSaved] = useState(false);
   const { saved, count: savedCount } = useSavedCars();
 
-  const setFilter = useCallback((key, value) => {
-    setFilters((prev) => ({ ...prev, [key]: value }));
-    setCurrentPage(1);
-  }, []);
+  const {
+    filters,
+    setFilter,
+    resetFilters,
+    hasActiveFilters,
+    cars,
+    total,
+    loading,
+    page,
+    setPage,
+    totalPages,
+  } = useCarFilters(saved, showSaved);
 
-  const resetFilters = () => {
-    setFilters(defaultFilters);
-    setCurrentPage(1);
+  const handleReset = () => {
+    resetFilters();
+    setShowSaved(false);
   };
 
-  const hasActiveFilters =
-    filters.search ||
-    filters.brand !== "ALL" ||
-    filters.fuelType !== "All" ||
-    filters.type !== "All" ||
-    filters.maxPrice ||
-    filters.maxMileage ||
-    filters.showSaved;
-
-  const filteredCars = useMemo(() => {
-    let result = allCars.filter((car) => {
-      const q = filters.search.trim().toLowerCase();
-      const matchSearch =
-        !q ||
-        car.name.toLowerCase().includes(q) ||
-        car.brand.toLowerCase().includes(q) ||
-        car.model.toLowerCase().includes(q) ||
-        car.type.toLowerCase().includes(q);
-
-      const matchBrand =
-        filters.brand === "ALL" || car.brand.toLowerCase() === filters.brand.toLowerCase();
-
-      const matchFuel =
-        filters.fuelType === "All" ||
-        car.fuelType.toLowerCase() === filters.fuelType.toLowerCase();
-
-      const matchType =
-        filters.type === "All" || car.type.toLowerCase() === filters.type.toLowerCase();
-
-      const matchPrice = !filters.maxPrice || car.price <= parseInt(filters.maxPrice);
-      const matchMileage = !filters.maxMileage || car.mileage <= parseInt(filters.maxMileage);
-      const matchSaved = !filters.showSaved || saved.includes(car.slug);
-
-      return matchSearch && matchBrand && matchFuel && matchType && matchPrice && matchMileage && matchSaved;
-    });
-
-    switch (filters.sort) {
-      case "price_asc":
-        result = [...result].sort((a, b) => a.price - b.price);
-        break;
-      case "price_desc":
-        result = [...result].sort((a, b) => b.price - a.price);
-        break;
-      case "mileage_asc":
-        result = [...result].sort((a, b) => a.mileage - b.mileage);
-        break;
-      case "newest":
-      default:
-        result = [...result].sort((a, b) => b.year - a.year);
-        break;
-    }
-
-    return result;
-  }, [filters, saved]);
-
-  const totalPages = Math.ceil(filteredCars.length / CARS_PER_PAGE);
-  const paginated = filteredCars.slice(
-    (currentPage - 1) * CARS_PER_PAGE,
-    currentPage * CARS_PER_PAGE
-  );
-
-  const goToPage = (page) => {
-    setCurrentPage(page);
+  const goToPage = (p) => {
+    setPage(p);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  const activeHasFilters = hasActiveFilters || showSaved;
 
   return (
     <div className="w-full">
@@ -115,7 +53,7 @@ export default function InventoryClient() {
             Browse Our Vehicles
           </h1>
           <p className="text-soft text-sm sm:text-base max-w-lg mx-auto">
-            Explore {allCars.length}+ premium vehicles across Toyota, Mercedes, Lexus, BMW, and Honda.
+            Explore {totalInventory}+ premium vehicles across Toyota, Mercedes, Lexus, BMW, and Honda.
           </p>
         </div>
       </div>
@@ -161,14 +99,14 @@ export default function InventoryClient() {
           <button
             onClick={() => setShowFilters((v) => !v)}
             className={`sm:hidden flex items-center gap-2 px-4 py-3 rounded-xl border text-sm font-medium transition-all cursor-pointer ${
-              showFilters || hasActiveFilters
+              showFilters || activeHasFilters
                 ? "bg-accent text-on-accent border-accent"
                 : "bg-surface text-soft border-line hover:border-accent/40"
             }`}
           >
             <FaSlidersH className="text-sm" />
             Filters
-            {hasActiveFilters && <span className="w-2 h-2 bg-on-accent rounded-full" />}
+            {activeHasFilters && <span className="w-2 h-2 bg-on-accent rounded-full" />}
           </button>
         </div>
 
@@ -190,14 +128,14 @@ export default function InventoryClient() {
 
           {/* Saved-only toggle */}
           <button
-            onClick={() => setFilter("showSaved", !filters.showSaved)}
+            onClick={() => setShowSaved((v) => !v)}
             disabled={savedCount === 0}
             className={`ml-auto inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border transition-all duration-200 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${
-              filters.showSaved
+              showSaved
                 ? "bg-bad text-white border-bad"
                 : "bg-surface text-soft border-line hover:border-bad/40 hover:text-bad"
             }`}
-            aria-pressed={filters.showSaved}
+            aria-pressed={showSaved}
           >
             <FaHeart className="text-xs" />
             Saved ({savedCount})
@@ -207,7 +145,7 @@ export default function InventoryClient() {
         {/* Advanced filters */}
         <div className={`${showFilters ? "block" : "hidden sm:block"} mb-6`}>
           <div className="bg-surface rounded-2xl border border-line p-4 shadow-soft">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
               <FilterField label="Fuel Type">
                 <select
                   value={filters.fuelType}
@@ -226,6 +164,17 @@ export default function InventoryClient() {
                   className="filter-input"
                 >
                   {TYPES.map((t) => (
+                    <option key={t}>{t}</option>
+                  ))}
+                </select>
+              </FilterField>
+              <FilterField label="Transmission">
+                <select
+                  value={filters.transmission}
+                  onChange={(e) => setFilter("transmission", e.target.value)}
+                  className="filter-input"
+                >
+                  {TRANSMISSIONS.map((t) => (
                     <option key={t}>{t}</option>
                   ))}
                 </select>
@@ -250,10 +199,10 @@ export default function InventoryClient() {
               </FilterField>
             </div>
 
-            {hasActiveFilters && (
+            {activeHasFilters && (
               <div className="mt-3 pt-3 border-t border-line flex justify-end">
                 <button
-                  onClick={resetFilters}
+                  onClick={handleReset}
                   className="flex items-center gap-1.5 text-xs text-faint hover:text-bad transition-colors cursor-pointer"
                 >
                   <FaTimes />
@@ -267,28 +216,40 @@ export default function InventoryClient() {
         {/* Results summary */}
         <div className="flex items-center justify-between mb-5">
           <p className="text-sm text-soft">
-            <span className="text-fg font-semibold">{filteredCars.length}</span> vehicles found
-            {hasActiveFilters && (
-              <button
-                onClick={resetFilters}
-                className="ml-3 text-xs text-bad hover:opacity-80 transition-opacity cursor-pointer"
-              >
-                (clear filters)
-              </button>
+            {loading ? (
+              <span className="text-faint">Loading...</span>
+            ) : (
+              <>
+                <span className="text-fg font-semibold">{total}</span> vehicles found
+                {activeHasFilters && (
+                  <button
+                    onClick={handleReset}
+                    className="ml-3 text-xs text-bad hover:opacity-80 transition-opacity cursor-pointer"
+                  >
+                    (clear filters)
+                  </button>
+                )}
+              </>
             )}
           </p>
           <p className="text-xs text-faint">
-            Page {currentPage} of {totalPages || 1}
+            Page {page} of {totalPages || 1}
           </p>
         </div>
 
         {/* Car grid */}
-        {filteredCars.length === 0 ? (
-          <EmptyState onReset={resetFilters} savedFilter={filters.showSaved} />
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            {Array.from({ length: 9 }).map((_, i) => (
+              <div key={i} className="bg-surface rounded-2xl border border-line h-80 animate-pulse" />
+            ))}
+          </div>
+        ) : total === 0 ? (
+          <EmptyState onReset={handleReset} savedFilter={showSaved} />
         ) : (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-              {paginated.map((car, i) => (
+              {cars.map((car, i) => (
                 <CarCard key={`${car.id}-${car.brand}`} car={car} priority={i < 4} />
               ))}
             </div>
@@ -296,17 +257,15 @@ export default function InventoryClient() {
             {totalPages > 1 && (
               <div className="flex items-center justify-center gap-2 mt-12 flex-wrap">
                 <button
-                  onClick={() => goToPage(currentPage - 1)}
-                  disabled={currentPage === 1}
+                  onClick={() => goToPage(page - 1)}
+                  disabled={page === 1}
                   className="px-4 py-2 rounded-xl bg-surface border border-line text-sm text-soft hover:border-accent/40 hover:text-accent disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
                 >
                   &larr; Prev
                 </button>
 
                 {Array.from({ length: totalPages }, (_, i) => i + 1)
-                  .filter(
-                    (p) => p === 1 || p === totalPages || Math.abs(p - currentPage) <= 1
-                  )
+                  .filter((p) => p === 1 || p === totalPages || Math.abs(p - page) <= 1)
                   .reduce((acc, p, i, arr) => {
                     if (i > 0 && p - arr[i - 1] > 1) acc.push("...");
                     acc.push(p);
@@ -314,15 +273,13 @@ export default function InventoryClient() {
                   }, [])
                   .map((item, i) =>
                     item === "..." ? (
-                      <span key={`dot-${i}`} className="px-2 text-faint text-sm">
-                        …
-                      </span>
+                      <span key={`dot-${i}`} className="px-2 text-faint text-sm">…</span>
                     ) : (
                       <button
                         key={item}
                         onClick={() => goToPage(item)}
                         className={`w-9 h-9 rounded-xl text-sm font-semibold border transition-all duration-200 cursor-pointer ${
-                          currentPage === item
+                          page === item
                             ? "bg-accent text-on-accent border-accent shadow-soft"
                             : "bg-surface text-soft border-line hover:border-accent/40 hover:text-accent"
                         }`}
@@ -333,8 +290,8 @@ export default function InventoryClient() {
                   )}
 
                 <button
-                  onClick={() => goToPage(currentPage + 1)}
-                  disabled={currentPage === totalPages}
+                  onClick={() => goToPage(page + 1)}
+                  disabled={page === totalPages}
                   className="px-4 py-2 rounded-xl bg-surface border border-line text-sm text-soft hover:border-accent/40 hover:text-accent disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
                 >
                   Next &rarr;
@@ -344,7 +301,6 @@ export default function InventoryClient() {
           </>
         )}
       </div>
-
     </div>
   );
 }

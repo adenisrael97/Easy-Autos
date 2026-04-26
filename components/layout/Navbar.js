@@ -7,22 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaPhone, FaEnvelope, FaBars, FaTimes } from "react-icons/fa";
 import { MdDirectionsCar } from "react-icons/md";
 import ThemeToggle from "@/components/theme/ThemeToggle";
-
-const navLinks = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Inventory", href: "/Inventory" },
-  { name: "Financing", href: "/financing" },
-  { name: "Service", href: "/service" },
-  { name: "Sell / Trade", href: "/sell-trade" },
-  { name: "Contact", href: "/contact" },
-  { name: "Blog", href: "/blog" },
-];
-
-const contactInfo = {
-  phone: "+234 800 123 4567",
-  email: "info@easyautos.com",
-};
+import { navLinks, contactInfo } from "@/data/navigation";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -37,6 +22,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsOpen(false);
   }, [pathname]);
 

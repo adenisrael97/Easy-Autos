@@ -1,42 +1,6 @@
 import Link from "next/link";
 import { FaCheckCircle, FaArrowRight } from "react-icons/fa";
-
-const features = [
-  "Trusted by thousands of customers since 2009",
-  "Award-winning customer service team",
-  "100% transparent pricing & financing",
-  "Comprehensive after-sales support & warranty",
-];
-
-const milestones = [
-  { year: "2009", event: "Easy Autos founded in Lagos" },
-  { year: "2015", event: "Expanded to 3 showroom locations" },
-  { year: "2020", event: "Launched online vehicle marketplace" },
-  { year: "2024", event: "3,500+ vehicles sold milestone" },
-];
-
-const cards = [
-  {
-    title: "Our Mission",
-    desc: "To deliver premium vehicles and exceptional service, making your car buying journey seamless and enjoyable.",
-    accent: true,
-  },
-  {
-    title: "Our Vision",
-    desc: "To be the most trusted and innovative auto dealership, setting the gold standard for excellence in the industry.",
-    accent: false,
-  },
-  {
-    title: "Our Values",
-    desc: "Integrity, customer focus, and continuous improvement drive everything we do at Easy Autos.",
-    accent: false,
-  },
-  {
-    title: "Our Promise",
-    desc: "We stand by every vehicle we sell, ensuring quality, safety, and complete satisfaction for every customer.",
-    accent: true,
-  },
-];
+import { aboutFeatures as features, missionCards as cards, landingMilestones as milestones } from "@/data/about";
 
 export default function AboutUs() {
   return (

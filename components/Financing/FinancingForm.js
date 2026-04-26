@@ -11,8 +11,7 @@ import {
 } from "@heroicons/react/24/solid";
 import Button from "@/components/ui/Button";
 import { useToast } from "@/components/feedback/Toaster";
-
-const loanTerms = [24, 36, 48, 60, 72, 84];
+import { loanTerms } from "@/data/financing";
 
 function FinancingInfo() {
   return (

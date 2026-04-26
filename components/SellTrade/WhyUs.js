@@ -1,27 +1,4 @@
-import { FaCoins, FaBolt, FaShieldAlt, FaHandsHelping } from "react-icons/fa";
-
-const cards = [
-  {
-    icon: FaCoins,
-    title: "Best Value Offers",
-    desc: "Competitive, market-based offers so you get the most for your vehicle — no haggling, no hassle.",
-  },
-  {
-    icon: FaBolt,
-    title: "Fast & Easy Process",
-    desc: "Streamlined steps mean you can sell or trade quickly, with minimal paperwork and maximum convenience.",
-  },
-  {
-    icon: FaShieldAlt,
-    title: "Trusted Transparency",
-    desc: "Honest and upfront at every step — you always know what to expect, no surprises.",
-  },
-  {
-    icon: FaHandsHelping,
-    title: "Personalized Support",
-    desc: "Our friendly team is here to guide you, answer your questions, and help you make the best decision.",
-  },
-];
+import { whyUsCards as cards } from "@/data/sellTrade";
 
 export default function WhyUs() {
   return (

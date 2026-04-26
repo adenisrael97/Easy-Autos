@@ -1,48 +1,18 @@
 "use client";
 
-import { useState } from "react";
-import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock, FaArrowRight, FaCheck } from "react-icons/fa";
+import { FaMapMarkerAlt, FaArrowRight, FaCheck } from "react-icons/fa";
 import Button from "@/components/ui/Button";
 import { useToast } from "@/components/feedback/Toaster";
-
-const contactDetails = [
-  {
-    icon: FaMapMarkerAlt,
-    title: "Visit Our Showroom",
-    info: "123 Auto Drive, Victoria Island, Lagos, Nigeria",
-  },
-  {
-    icon: FaPhone,
-    title: "Call Us Anytime",
-    info: "+234 800 123 4567",
-    href: "tel:+2348001234567",
-  },
-  {
-    icon: FaEnvelope,
-    title: "Email Us",
-    info: "info@easyautos.com",
-    href: "mailto:info@easyautos.com",
-  },
-  {
-    icon: FaClock,
-    title: "Business Hours",
-    info: "Mon – Sat: 8:00 AM – 6:00 PM",
-  },
-];
+import { useContactForm } from "@/hooks/useContactForm";
+import { contactDetails } from "@/data/navigation";
 
 export default function ContactSection() {
-  const [loading, setLoading] = useState(false);
-  const [sent, setSent] = useState(false);
+  const { form, update, submit, loading, sent, reset, error } = useContactForm();
   const { toast } = useToast();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setSent(true);
-      toast("Message sent — we'll be in touch within 24 hours.", { variant: "success" });
-    }, 1100);
+  const handleSubmit = async (e) => {
+    await submit(e);
+    if (!error) toast("Message sent — we'll be in touch within 24 hours.", { variant: "success" });
   };
 
   return (
@@ -73,18 +43,23 @@ export default function ContactSection() {
                 <p className="text-soft text-sm text-center">
                   Thank you for reaching out. Our team will get back to you within 24 hours.
                 </p>
-                <Button variant="outline" size="sm" onClick={() => setSent(false)}>
+                <Button variant="outline" size="sm" onClick={reset}>
                   Send Another Message
                 </Button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                {error && (
+                  <p className="text-xs text-error bg-error/10 border border-error/20 rounded-lg px-3 py-2">{error}</p>
+                )}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Field label="Full Name *">
                     <input
                       type="text"
                       required
                       placeholder="John Doe"
+                      value={form.name}
+                      onChange={(e) => update("name", e.target.value)}
                       className="form-input"
                     />
                   </Field>
@@ -93,6 +68,8 @@ export default function ContactSection() {
                       type="email"
                       required
                       placeholder="john@example.com"
+                      value={form.email}
+                      onChange={(e) => update("email", e.target.value)}
                       className="form-input"
                     />
                   </Field>
@@ -101,11 +78,17 @@ export default function ContactSection() {
                   <input
                     type="tel"
                     placeholder="+234 800 000 0000"
+                    value={form.phone}
+                    onChange={(e) => update("phone", e.target.value)}
                     className="form-input"
                   />
                 </Field>
                 <Field label="Subject">
-                  <select className="form-input">
+                  <select
+                    value={form.subject}
+                    onChange={(e) => update("subject", e.target.value)}
+                    className="form-input"
+                  >
                     <option value="">Select a topic...</option>
                     <option value="purchase">Vehicle Purchase</option>
                     <option value="financing">Financing Inquiry</option>
@@ -119,6 +102,8 @@ export default function ContactSection() {
                     required
                     rows={4}
                     placeholder="Tell us what you're looking for..."
+                    value={form.message}
+                    onChange={(e) => update("message", e.target.value)}
                     className="form-input resize-none"
                   />
                 </Field>

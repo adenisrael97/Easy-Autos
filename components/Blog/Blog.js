@@ -3,28 +3,9 @@
 import { useState, useMemo } from "react";
 import Image from "next/image";
 import { FaSearch, FaArrowRight, FaTimes } from "react-icons/fa";
+import { getPosts, blogCategories as categories } from "@/services/blogService";
 
-const categories = [
-  { label: "All", emoji: "📰" },
-  { label: "Electric Vehicles", emoji: "⚡" },
-  { label: "Buying Guide", emoji: "🛒" },
-  { label: "Maintenance", emoji: "🛠️" },
-  { label: "Design", emoji: "🎨" },
-  { label: "Technology", emoji: "💻" },
-];
-
-const newsCards = [
-  { title: "The Rise of Electric Cars", category: "Electric Vehicles", img: "/images/bmw/bmw1.avif", desc: "Explore how electric vehicles are changing the automotive landscape and what it means for buyers.", readTime: "4 min" },
-  { title: "How to Buy Your First Car", category: "Buying Guide", img: "/images/honda/honda1.avif", desc: "A step-by-step guide to buying your first car, from research to negotiation.", readTime: "6 min" },
-  { title: "Maintaining Your Vehicle", category: "Maintenance", img: "/images/mercedes/Mercedes1.avif", desc: "Tips and tricks for keeping your car in top shape and extending its lifespan.", readTime: "5 min" },
-  { title: "2026 Car Design Trends", category: "Design", img: "/images/lexus/lexus1.avif", desc: "Discover the latest design innovations in the automotive industry.", readTime: "3 min" },
-  { title: "Tech Innovations in Cars", category: "Technology", img: "/images/Toyota/Toyota1.avif", desc: "A look at the newest technology features in modern vehicles.", readTime: "5 min" },
-  { title: "Easy Autos News", category: "All", img: "/images/bmw/bmw2.avif", desc: "Updates and news from Easy Autos, your trusted dealership.", readTime: "2 min" },
-  { title: "Electric SUVs: The Future", category: "Electric Vehicles", img: "/images/honda/honda2.avif", desc: "Why electric SUVs are becoming the go-to choice for families.", readTime: "4 min" },
-  { title: "Luxury Car Maintenance", category: "Maintenance", img: "/images/mercedes/Mercedes2.avif", desc: "How to care for your luxury vehicle and keep it running smoothly.", readTime: "6 min" },
-  { title: "Buying Guide: Used Cars", category: "Buying Guide", img: "/images/lexus/lexus2.avif", desc: "Everything you need to know about buying a used car.", readTime: "7 min" },
-  { title: "Smart Car Tech in 2026", category: "Technology", img: "/images/Toyota/Toyota2.avif", desc: "The rise of smart technology in vehicles and what to expect next.", readTime: "5 min" },
-];
+const allPosts = getPosts();
 
 export default function Blog() {
   const [search, setSearch] = useState("");
@@ -32,7 +13,7 @@ export default function Blog() {
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
-    return newsCards.filter(
+    return allPosts.filter(
       (card) =>
         (activeCategory === "All" || card.category === activeCategory) &&
         (!q || card.title.toLowerCase().includes(q) || card.desc.toLowerCase().includes(q))

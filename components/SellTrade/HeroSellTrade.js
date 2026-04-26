@@ -1,27 +1,4 @@
-import { FaCalculator, FaCalendarCheck, FaHandshake, FaMoneyBillWave } from "react-icons/fa";
-
-const steps = [
-  {
-    icon: FaCalculator,
-    title: "Get an Instant Quote",
-    desc: "Provide your vehicle details online or in-store to receive a fast, competitive offer.",
-  },
-  {
-    icon: FaCalendarCheck,
-    title: "Schedule an Inspection",
-    desc: "Book a convenient time for a quick, professional inspection of your car.",
-  },
-  {
-    icon: FaHandshake,
-    title: "Accept the Offer",
-    desc: "Review and accept our offer — no pressure, no obligation, just a fair deal.",
-  },
-  {
-    icon: FaMoneyBillWave,
-    title: "Get Paid or Trade Up",
-    desc: "Choose cash payment or apply your value toward a new vehicle from our inventory.",
-  },
-];
+import { howItWorksSteps as steps } from "@/data/sellTrade";
 
 export default function HeroSellTrade() {
   return (

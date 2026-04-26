@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 import CarCard from "@/components/cards/CarCard";
-import { allCars } from "@/lib/cars";
+import { getFeaturedCars } from "@/services/carService";
+import { allCars } from "@/data/cars";
 
-const featured = allCars.filter((_, i) => i % 6 === 0).slice(0, 8);
+const featured = getFeaturedCars(8);
 
 export default function FeaturedCars() {
   return (

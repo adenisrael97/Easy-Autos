@@ -1,51 +1,6 @@
 import Link from "next/link";
-import {
-  FaHandshake,
-  FaRegLightbulb,
-  FaBalanceScale,
-  FaUsers,
-  FaInstagram,
-  FaLinkedinIn,
-} from "react-icons/fa";
-
-const values = [
-  {
-    icon: FaHandshake,
-    title: "Trust",
-    desc: "We build lasting relationships through honesty, transparency, and reliability in all our dealings.",
-  },
-  {
-    icon: FaRegLightbulb,
-    title: "Innovation",
-    desc: "We embrace creativity and forward-thinking solutions to continually improve our services and your experience.",
-  },
-  {
-    icon: FaBalanceScale,
-    title: "Fairness",
-    desc: "We treat everyone with respect and ensure every client receives equitable and just service.",
-  },
-  {
-    icon: FaUsers,
-    title: "Community",
-    desc: "We foster a sense of belonging and give back to the communities that support us, making a positive impact together.",
-  },
-];
-
-const milestones = [
-  { step: "01", year: "2012", title: "Founded", desc: "Started with a vision to redefine car buying with integrity and transparency." },
-  { step: "02", year: "2015", title: "Growth", desc: "Expanded our team and services, focusing on reliability and customer satisfaction." },
-  { step: "03", year: "2018", title: "Innovation", desc: "Embraced new technologies to enhance the client experience and streamline operations." },
-  { step: "04", year: "2024", title: "Community", desc: "Built strong relationships and gave back to the community, making a positive impact." },
-];
-
-const team = [
-  { name: "Sophia Williams", role: "CEO", desc: "Visionary leader, shaping our strategy and culture." },
-  { name: "James Lee", role: "Head of Sales", desc: "Connecting clients with their dream cars." },
-  { name: "Priya Patel", role: "Marketing Director", desc: "Crafting our brand and outreach." },
-  { name: "Michael Chen", role: "Lead Technician", desc: "Ensuring every vehicle meets our high standards." },
-  { name: "Emily Johnson", role: "Customer Relations", desc: "Delivering exceptional service and support." },
-  { name: "David Brown", role: "Finance Manager", desc: "Helping clients find the best financial solutions." },
-];
+import { FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { companyValues as values, companyMilestones as milestones, teamMembers as team } from "@/data/about";
 
 export default function ValueAbout() {
   return (

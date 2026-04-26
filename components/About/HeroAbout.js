@@ -1,26 +1,4 @@
-import { FaCalendarAlt, FaUsers, FaSmile, FaGlobe } from "react-icons/fa";
-
-const stats = [
-  { icon: FaCalendarAlt, label: "Years in Business", value: "10+" },
-  { icon: FaUsers, label: "Happy Clients", value: "5,000+" },
-  { icon: FaSmile, label: "Satisfaction Rate", value: "98%" },
-  { icon: FaGlobe, label: "Countries Served", value: "50+" },
-];
-
-const cards = [
-  {
-    title: "Our Story",
-    desc: "Easy Autos was founded with a vision to transform the automotive experience. What began as a small team of passionate car enthusiasts has grown into a trusted name, known for integrity, innovation, and a relentless commitment to our clients.",
-  },
-  {
-    title: "Driven By Excellence",
-    desc: "Our journey is defined by our pursuit of excellence in every aspect of our business. We believe in building lasting relationships, delivering exceptional service, and exceeding expectations at every turn.",
-  },
-  {
-    title: "Our Growth",
-    desc: "From our humble beginnings to serving clients in over 50 countries, our story is one of growth, dedication, and a passion for making a difference. We are proud of our achievements and grateful for the trust our clients place in us every day.",
-  },
-];
+import { aboutPageStats as stats, aboutStoryCards as cards } from "@/data/about";
 
 export default function HeroAbout() {
   return (

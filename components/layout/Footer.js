@@ -1,48 +1,7 @@
 import Link from "next/link";
 import { MdDirectionsCar } from "react-icons/md";
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaTwitter,
-  FaLinkedinIn,
-  FaYoutube,
-  FaMapMarkerAlt,
-  FaPhone,
-  FaEnvelope,
-  FaClock,
-} from "react-icons/fa";
-
-const footerLinks = {
-  services: [
-    { label: "Car Sales", href: "/Inventory" },
-    { label: "Maintenance & Repairs", href: "/service" },
-    { label: "Financing", href: "/financing" },
-    { label: "Sell / Trade-In", href: "/sell-trade" },
-    { label: "Vehicle Detailing", href: "/service" },
-  ],
-  support: [
-    { label: "Contact Us", href: "/contact" },
-    { label: "FAQs", href: "#" },
-    { label: "Warranty", href: "#" },
-    { label: "Customer Support", href: "#" },
-    { label: "After-Sales Service", href: "#" },
-  ],
-  company: [
-    { label: "About Us", href: "/about" },
-    { label: "Our Team", href: "#" },
-    { label: "Careers", href: "#" },
-    { label: "Testimonials", href: "#" },
-    { label: "Blog", href: "/blog" },
-  ],
-};
-
-const socials = [
-  { icon: FaFacebookF, label: "Facebook", href: "#" },
-  { icon: FaInstagram, label: "Instagram", href: "#" },
-  { icon: FaTwitter, label: "Twitter", href: "#" },
-  { icon: FaLinkedinIn, label: "LinkedIn", href: "#" },
-  { icon: FaYoutube, label: "YouTube", href: "#" },
-];
+import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock } from "react-icons/fa";
+import { footerLinks, socialLinks as socials, contactInfo } from "@/data/navigation";
 
 export default function Footer() {
   return (
@@ -84,23 +43,23 @@ export default function Footer() {
             <ul className="flex flex-col gap-2 text-sm mt-2">
               <li className="flex items-start gap-2.5 text-soft">
                 <FaMapMarkerAlt className="text-accent mt-0.5 shrink-0 text-xs" />
-                <span>123 Auto Drive, Lagos, Nigeria</span>
+                <span>{contactInfo.address}</span>
               </li>
               <li className="flex items-center gap-2.5 text-soft">
                 <FaPhone className="text-accent shrink-0 text-xs" />
-                <a href="tel:+2348001234567" className="hover:text-accent transition-colors">
-                  +234 800 123 4567
+                <a href={`tel:${contactInfo.phone}`} className="hover:text-accent transition-colors">
+                  {contactInfo.phone}
                 </a>
               </li>
               <li className="flex items-center gap-2.5 text-soft">
                 <FaEnvelope className="text-accent shrink-0 text-xs" />
-                <a href="mailto:info@easyautos.com" className="hover:text-accent transition-colors">
-                  info@easyautos.com
+                <a href={`mailto:${contactInfo.email}`} className="hover:text-accent transition-colors">
+                  {contactInfo.email}
                 </a>
               </li>
               <li className="flex items-center gap-2.5 text-soft">
                 <FaClock className="text-accent shrink-0 text-xs" />
-                <span>Mon – Sat: 8am – 6pm</span>
+                <span>{contactInfo.hours}</span>
               </li>
             </ul>
           </div>
